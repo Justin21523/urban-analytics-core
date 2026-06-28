@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "urban-analytics-core"
+version = "0.1.0"
+description = "Shared infrastructure for Taiwan urban analytics projects"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "httpx>=0.27.0",
+    "pydantic>=2.6,<3",
+    "PyYAML>=6.0",
+    "pandas>=2.0",
+    "numpy>=1.24",
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.27",
+    "starlette>=0.30",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "ruff>=0.4",
+]
+duckdb = [
+    "duckdb>=0.10",
+]
+full = [
+    "duckdb>=0.10",
+    "scipy>=1.10",
+    "requests>=2.31",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 79
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+ignore = ["E501"]
